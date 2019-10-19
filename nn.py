@@ -8,12 +8,8 @@ def pairwise(iterable):
     return zip(a, b)
 
 
-def relu(x):
-    return x if x > 0 else 0
-
-
-def relu_derivative(x):
-    return 1 if x > 0 else 0
+logistic = lambda x: 1 / (1 + np.e ** (-x))
+logistic_derivative: lambda x: logistic(x) * (1 - logistic(x))
 
 
 class NN:
@@ -21,9 +17,16 @@ class NN:
         self.rng = np.random.RandomState(random_state)
         if len(list(layers)) < 2:
             raise ValueError("Invalid network size.")
-        self.weights = [None] * 3
+        self.weights = [None] * (len(layers) - 1)
         for i, size in enumerate(pairwise(layers)):
             self.weights[i] = self.rng.rand(*size)
+
+    def forward(self, values):
+        values = np.array(values)
+        for weight in self.weights:
+            values = np.matmul(values, weight)
+            values = logistic(values)
+        return values
 
 
 def main():

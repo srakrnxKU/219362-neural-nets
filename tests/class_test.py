@@ -15,3 +15,8 @@ class TestNN:
             assert nn.NN([])
         with pytest.raises(ValueError):
             assert nn.NN([1])
+
+    def test_feed_forward(self):
+        x = np.array([[1, 1, 1], [2, 2, 2]])
+        output = self.nn_1.forward(x)
+        assert output.shape == (2, 5)
