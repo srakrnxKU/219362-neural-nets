@@ -13,10 +13,11 @@ def relu_derivative(x):
     return 1 if x > 0 else 0
 
 class NN:
-    def __init__(self, layers):
+    def __init__(self, layers, random_state=None):
+        self.rng = np.random.RandomState(random_state)
         self.weights = [None] * 3
         for i, size in enumerate(pairwise(layers)):
-            self.weights[i] = np.zeros(size)
+            self.weights[i] = self.rng.rand(*size)
 
 def main():
     pass
