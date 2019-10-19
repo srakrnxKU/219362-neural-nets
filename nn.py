@@ -4,7 +4,7 @@ import itertools
 def pairwise(iterable):
     a, b = itertools.tee(iterable)
     next(b, None)
-    return itertools.izip(a, b)
+    return zip(a, b)
 
 class NN:
     def __init__(self, layers):
