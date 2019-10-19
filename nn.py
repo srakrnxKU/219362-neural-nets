@@ -6,6 +6,12 @@ def pairwise(iterable):
     next(b, None)
     return zip(a, b)
 
+def relu(x):
+    return x if x > 0 else 0
+
+def relu_derivative(x):
+    return 1 if x > 0 else 0
+
 class NN:
     def __init__(self, layers):
         self.weights = [None] * 3
