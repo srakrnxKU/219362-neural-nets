@@ -15,6 +15,8 @@ def relu_derivative(x):
 class NN:
     def __init__(self, layers, random_state=None):
         self.rng = np.random.RandomState(random_state)
+        if len(list(layers)) < 2:
+            raise ValueError("Invalid network size.")
         self.weights = [None] * 3
         for i, size in enumerate(pairwise(layers)):
             self.weights[i] = self.rng.rand(*size)
